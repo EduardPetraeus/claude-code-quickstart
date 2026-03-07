@@ -56,8 +56,20 @@ cd /path/to/your-project && claude
 | `examples/` | CLAUDE.md templates for Python, TypeScript, and non-coders |
 | `exercises/` | 4 hands-on exercises to learn the setup |
 
+## Non-Coder Quick Start
+
+Don't code? No problem. You can set up a project without touching any config files:
+
+1. Create a folder for your project (e.g., `mkdir my-project`)
+2. Open a terminal and navigate there (`cd my-project`)
+3. Start Claude Code (`claude`)
+4. Open [IMPLEMENT.md](IMPLEMENT.md) and copy everything below the `---` line
+5. Paste it into Claude Code and answer the questions
+6. Done — Claude sets up everything for you
+
 ## Next
 
 - Read the docs in `docs/` for full explanations
 - Try the exercises in `exercises/` to learn hands-on
 - Check `examples/` for CLAUDE.md templates for your stack
+- Browse `prompts/` for templates that improve your AI conversations
