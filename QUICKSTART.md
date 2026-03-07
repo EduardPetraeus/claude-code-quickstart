@@ -22,11 +22,15 @@ That's it. Claude automatically reads `CLAUDE.md` and loads the rules, hooks, an
 
 ## Verify It Works
 
-In the Claude Code session, type:
+In the Claude Code session, try these:
 
 > What conventions does this project follow?
 
 Claude should list the code style, git workflow, and session protocol from CLAUDE.md.
+
+> Try to push to main
+
+The `protect-main` hook should block it with an error message. This proves hooks are working.
 
 ## Use It in Your Own Project
 

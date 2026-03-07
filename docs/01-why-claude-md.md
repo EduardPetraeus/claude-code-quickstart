@@ -38,7 +38,7 @@ Claude loads multiple CLAUDE.md files, from most general to most specific:
 ./src/CLAUDE.md              ← Subsystem overrides (optional)
 ```
 
-Lower levels override higher levels. Keep global rules minimal.
+More specific files override more general ones. Project CLAUDE.md overrides global CLAUDE.md.
 
 ## Common Mistakes
 

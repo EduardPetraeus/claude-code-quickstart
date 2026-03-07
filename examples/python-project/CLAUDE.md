@@ -15,7 +15,8 @@
 
 - `snake_case` for variables, functions, modules
 - `PascalCase` for classes
-- `kebab-case` for file and directory names
+- `snake_case` for file names (Python modules must be importable)
+- `kebab-case` for non-Python directories
 - Type hints on all public function signatures
 - Docstrings on all public functions (Google style)
 - No `print()` — use `logging` module

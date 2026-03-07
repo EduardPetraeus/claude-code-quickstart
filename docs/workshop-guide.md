@@ -12,14 +12,14 @@ A 2.5-hour hands-on workshop for getting productive with Claude Code.
 
 | Time | Block | Activity | Key Takeaway |
 |---|---|---|---|
-| 0:00–0:30 | Why Claude Code? | Live demo, no slides | "It reads your project" |
-| 0:30–1:00 | CLAUDE.md | Template walkthrough + Exercise 1 | "5 min config = 10x better output" |
-| 1:00–1:10 | Break | | |
-| 1:10–1:35 | Rules & Hooks | Demo protect-main + auto-lint + Exercise 2-3 | "Guardrails, not handcuffs" |
-| 1:35–2:00 | Workflow | Plan Mode demo | "Plan 60%, code 5%" |
-| 2:00–2:10 | Break | | |
-| 2:10–2:30 | Agents + Advanced | Code reviewer demo + Exercise 4 | "Agents = specialized instructions" |
-| 2:30–2:40 | Wrap-up & Q&A | Cheat sheet, next steps, CTA | "You have everything you need" |
+| 0:00–0:25 | Why Claude Code? | Live demo, no slides | "It reads your project" |
+| 0:25–0:50 | CLAUDE.md | Template walkthrough + Exercise 1 | "5 min config = 10x better output" |
+| 0:50–1:00 | Break | | |
+| 1:00–1:25 | Rules & Hooks | Demo protect-main + auto-lint + Exercise 2-3 | "Guardrails, not handcuffs" |
+| 1:25–1:50 | Workflow | Plan Mode demo | "Plan 60%, code 5%" |
+| 1:50–2:00 | Break | | |
+| 2:00–2:20 | Agents + Advanced | Code reviewer demo + Exercise 4 | "Agents = specialized instructions" |
+| 2:20–2:30 | Wrap-up & Q&A | Cheat sheet, next steps, CTA | "You have everything you need" |
 
 ---
 

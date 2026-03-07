@@ -84,3 +84,6 @@
 <!-- - Database migrations require manual review before applying -->
 <!-- - API endpoints must follow REST conventions in docs/api-guide.md -->
 <!-- - All new components need Storybook stories -->
+
+<!-- You're done! Save this file, commit it to git, and start Claude Code.
+     Claude reads CLAUDE.md automatically — no extra configuration needed. -->

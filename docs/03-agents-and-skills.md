@@ -61,41 +61,42 @@ against the project's CLAUDE.md conventions.
 
 ---
 
-## Skills — Claude's Auto-Triggered Abilities
+## Custom Commands — Reusable Prompts
 
-Skills are like agents, but Claude decides when to use them automatically based on context.
+Custom commands are markdown files that Claude treats as reusable prompt templates. You trigger them explicitly with a slash command.
 
-### Where Skills Live
+### Where Commands Live
 
 ```
-.claude/skills/
-  my-skill/
-    SKILL.md    ← The instructions
+.claude/commands/          ← Project commands (shared with team)
+~/.claude/commands/        ← Personal global commands
 ```
 
-### When to Use Skills vs. Agents
+### Example Command
 
-| | Agents | Skills |
-|---|---|---|
-| **Triggered by** | You invoke them explicitly | Claude detects when relevant |
-| **Best for** | Specific tasks on demand | Recurring patterns |
-| **Control** | High — you decide when | Lower — Claude decides when |
-
-### Example Skill: Auto-Test
+Create `.claude/commands/explain.md`:
 
 ```markdown
-# Auto-Test Skill
+Explain the following code in simple terms, suitable for a junior developer.
+Focus on what it does, not how it works internally.
 
-When I create or modify a function, also create or update
-the corresponding test file.
-
-- Python: test file in tests/test_<module>.py
-- TypeScript: test file alongside as <module>.test.ts
-- Use existing test patterns in the project
+$ARGUMENTS
 ```
+
+Use it: `/project:explain src/auth.py`
+
+`$ARGUMENTS` is replaced with whatever you type after the command name.
+
+### When to Use Commands vs. Agents
+
+| | Commands | Agents |
+|---|---|---|
+| **Triggered by** | You type `/project:<name>` | Claude uses them as subagents |
+| **Best for** | Reusable prompts with arguments | Complex multi-step workflows |
+| **Complexity** | Simple — just a markdown prompt | Richer — frontmatter, tool restrictions |
 
 ### Getting Started
 
-Start with agents — they're simpler and give you more control. Move to skills once you have patterns that should always apply.
+Start with agents — they're included in this repo and give you the most control. Move to custom commands once you find yourself typing the same prompt repeatedly.
 
 The `code-reviewer` agent in this repo (`.claude/agents/code-reviewer.md`) is a good starting point. Try it, then create your own.

@@ -8,7 +8,8 @@
 | Functions | `snake_case` | `get_user()`, `calculate_total()` |
 | Classes | `PascalCase` | `UserAccount`, `DataProcessor` |
 | Constants | `UPPER_SNAKE_CASE` | `MAX_RETRIES`, `API_BASE_URL` |
-| Files/dirs | `kebab-case` | `data-loader.py`, `test-utils/` |
+| Files/dirs | `kebab-case` | `test-utils/`, `api-docs/` |
+| Python files | `snake_case` | `data_loader.py`, `test_utils.py` |
 | Modules | `snake_case` | `data_loader`, `test_utils` |
 
 ## General Principles

@@ -19,10 +19,8 @@
 | `/init` | Generate a starter CLAUDE.md |
 | `/clear` | Reset conversation (fresh start) |
 | `/compact` | Compress context to save tokens |
-| `/undo` | Undo last code change |
-| `/config` | Open settings |
-| `/cost` | Show token usage |
-| `/review` | Code review analysis |
+| `/memory` | View and edit CLAUDE.md project memory |
+| `/terminal_setup` | Configure terminal for multi-line input |
 
 ## CLI Flags
 
@@ -31,7 +29,8 @@
 | `claude` | Start interactive session |
 | `claude "prompt"` | Start with a prompt |
 | `claude -c` | Continue last conversation |
-| `claude -p "query"` | Print mode (answer and exit) |
+| `claude -r` | Resume a previous session |
+| `claude -p "prompt"` | Print mode — answer and exit (for scripting) |
 | `claude --model <id>` | Use a specific model |
 
 ## Permission Modes
