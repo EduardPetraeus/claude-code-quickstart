@@ -95,6 +95,17 @@ Use it: `/project:explain src/auth.py`
 | **Best for** | Reusable prompts with arguments | Complex multi-step workflows |
 | **Complexity** | Simple — just a markdown prompt | Richer — frontmatter, tool restrictions |
 
+### Commands Included in This Repo
+
+This repo ships two ready-to-use commands in `.claude/commands/`:
+
+| Command | Usage | Purpose |
+|---|---|---|
+| `handover` | `/project:handover` | Write a structured session handover to STATUS.md |
+| `reflect` | `/project:reflect` | Review the session and capture reusable learnings |
+
+Try them at the end of any session — they teach you the habit of closing sessions cleanly.
+
 ### Getting Started
 
 Start with agents — they're included in this repo and give you the most control. Move to custom commands once you find yourself typing the same prompt repeatedly.

@@ -1,4 +1,8 @@
 {
+  "fileSuggestion": {
+    "type": "command",
+    "command": "bash .claude/hooks/file-suggestion.sh"
+  },
   "hooks": {
     "PreToolUse": [
       {
@@ -60,6 +64,17 @@
           {
             "type": "command",
             "command": "bash .claude/hooks/test-gate.sh"
+          }
+        ]
+      }
+    ],
+    "Notification": [
+      {
+        "matcher": "idle_prompt",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo 'Claude is waiting for input'"
           }
         ]
       }

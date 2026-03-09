@@ -56,8 +56,9 @@ CLAUDE.md                  → Project brain. Loaded every request. Conventions,
 
 - **CLAUDE.md template** — Commented, ready to customize for your project
 - **Rules (8)** — Git workflow, code style, session discipline, testing, Python conventions, web safety, session end protocol, security
-- **Hooks (9)** — Auto-lint, branch protection, critical file protection, pre-push review gate, secret scanning, context monitoring, test reminders, session lifecycle
+- **Hooks (10)** — Auto-lint, branch protection, critical file protection, pre-push review gate, secret scanning, context monitoring, test reminders, session lifecycle, file suggestions
 - **Agents (9)** — Code reviewer, security reviewer, explorer, quality gate, unit/integration/data/UAT/regression testers
+- **Commands (2)** — Session handover (`/project:handover`) and reflection (`/project:reflect`)
 - **Prompts (8)** — Battle-tested templates including 5 divergent thinking frameworks
 - **Guides (3)** — Agentic engineering patterns, multi-AI adversarial review, parallel execution
 - **Tools (1)** — Gemini-powered external code review CLI
@@ -99,9 +100,10 @@ CLAUDE.md                        # The template — start here
 QUICKSTART.md                    # Setup guide with verification
 IMPLEMENT.md                     # Non-coder bootstrap — paste into Claude Code
 .claude/
-  settings.json                  # Full hooks configuration (9 hooks)
+  settings.json                  # Full hooks + file suggestion config
+  commands/                      # 2 custom slash commands (handover, reflect)
   rules/                         # 8 topic-specific rule files
-  hooks/                         # 9 automation scripts
+  hooks/                         # 10 automation scripts
   agents/                        # 9 specialist agent definitions
 prompts/                         # 8 prompt templates + divergent thinking
 guides/                          # 3 deep pattern guides
