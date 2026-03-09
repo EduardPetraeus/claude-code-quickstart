@@ -10,19 +10,18 @@
 ### 1. Choose a topic for your rule
 
 Pick something relevant to how you work. Examples:
-- Testing conventions
+- Error handling conventions
 - Documentation standards
 - API design patterns
-- Error handling
 - Logging practices
 
 ### 2. Create the rule file
 
-Create a new file in `.claude/rules/`. For example, `testing.md`:
+Create a new file in `.claude/rules/`. For example, `error-handling.md`:
 
 ```bash
 # You can do this manually or ask Claude:
-# "Create a file .claude/rules/testing.md with testing rules for Python projects"
+# "Create a file .claude/rules/error-handling.md with error handling rules for Python projects"
 ```
 
 ### 3. Write your rules
@@ -30,26 +29,26 @@ Create a new file in `.claude/rules/`. For example, `testing.md`:
 Here's an example:
 
 ```markdown
-# Testing Rules
+# Error Handling Rules
 
 ## Conventions
 
-- Use pytest for all tests
-- Test file naming: `test_<module>.py`
-- Test function naming: `test_<function>_<scenario>`
-- Group related tests in classes: `class TestUserCreation:`
+- Use custom exception classes for domain errors
+- Exception naming: `<Domain>Error` (e.g., `ValidationError`, `NotFoundError`)
+- Always include a meaningful error message
+- Log errors at the boundary, not deep in the call stack
 
-## What to Test
+## What to Handle
 
-- Every public function needs at least one test
-- Test the happy path AND at least one error case
-- Use fixtures for shared setup (in conftest.py)
+- All external I/O (files, network, database) must have error handling
+- Validate user input at the entry point — fail fast with clear messages
+- Use context managers (`with` statements) for resource cleanup
 
-## What NOT to Test
+## What NOT to Do
 
-- Private helper functions (test them through public interfaces)
-- Third-party library behavior
-- Exact log messages (they change too often)
+- Never use bare `except:` — always catch specific exceptions
+- Never silently swallow errors (`except: pass`)
+- Don't log and re-raise the same error (pick one)
 ```
 
 ### 4. Verify Claude loads it

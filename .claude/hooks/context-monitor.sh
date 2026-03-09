@@ -4,8 +4,12 @@ INPUT=$(cat)
 TOOL_NAME=$(echo "$INPUT" | jq -r '.tool_name // "unknown"')
 SESSION_ID=$(echo "$INPUT" | jq -r '.session_id // "default"')
 
+# Use persistent cache dir instead of /tmp
+CACHE_DIR="${HOME}/.cache/claude"
+mkdir -p "$CACHE_DIR"
+
 # Session-scoped counter file
-COUNTER_FILE="/tmp/claude-context-monitor-${SESSION_ID}.txt"
+COUNTER_FILE="$CACHE_DIR/context-monitor-${SESSION_ID}.txt"
 
 # Initialize or increment
 if [ -f "$COUNTER_FILE" ]; then
@@ -13,12 +17,12 @@ if [ -f "$COUNTER_FILE" ]; then
   COUNT=$((COUNT + 1))
 else
   COUNT=1
-  echo "$TOOL_NAME" > "/tmp/claude-context-tools-${SESSION_ID}.log"
+  echo "$TOOL_NAME" > "$CACHE_DIR/context-tools-${SESSION_ID}.log"
 fi
 echo "$COUNT" > "$COUNTER_FILE"
 
 # Log tool name for pattern detection
-echo "$TOOL_NAME" >> "/tmp/claude-context-tools-${SESSION_ID}.log"
+echo "$TOOL_NAME" >> "$CACHE_DIR/context-tools-${SESSION_ID}.log"
 
 # --- Warning thresholds ---
 WARNING=""
@@ -34,7 +38,7 @@ fi
 
 # Detect repetition loops (same tool called 5+ times in last 8 calls)
 if [ "$COUNT" -gt 10 ] && [ -z "$WARNING" ]; then
-  RECENT=$(tail -8 "/tmp/claude-context-tools-${SESSION_ID}.log")
+  RECENT=$(tail -8 "$CACHE_DIR/context-tools-${SESSION_ID}.log")
   MOST_COMMON=$(echo "$RECENT" | sort | uniq -c | sort -rn | head -1 | awk '{print $1}')
   if [ "$MOST_COMMON" -ge 5 ]; then
     REPEATED_TOOL=$(echo "$RECENT" | sort | uniq -c | sort -rn | head -1 | awk '{print $2}')
@@ -44,7 +48,11 @@ fi
 
 # Output warning if any
 if [ -n "$WARNING" ]; then
-  printf '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"%s"}}' "$(echo "$WARNING" | sed 's/"/\\"/g')"
+  if command -v jq &>/dev/null; then
+    jq -n --arg ctx "$WARNING" '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":$ctx}}'
+  else
+    printf '{"hookSpecificOutput":{"hookEventName":"PostToolUse","additionalContext":"%s"}}' "${WARNING//\"/\\\"}"
+  fi
 fi
 
 exit 0

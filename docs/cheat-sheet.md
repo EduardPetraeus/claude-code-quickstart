@@ -32,7 +32,7 @@ Quick reference for daily use. Print it, bookmark it, keep it handy.
 | Shortcut | Action |
 |---|---|
 | `Enter` | Send message |
-| `Shift+Tab` | Toggle Plan/Normal mode |
+| `Shift+Tab` | Toggle Plan/Normal/Auto-Accept mode |
 | `Ctrl+C` | Cancel current generation |
 | `Esc` | Interrupt and give feedback |
 | `Esc, Esc` | Hard interrupt — clear pending actions |
@@ -159,6 +159,7 @@ Wave 3: [final integration tasks]     → verify all green
 | `test-gate.sh` | Stop | Remind to run tests before finishing |
 | `session-start.sh` | SessionStart | Check setup freshness on startup |
 | `session-end.sh` | SessionEnd | Log session metadata |
+| `file-suggestion.sh` | UserPromptSubmit | Project file autocomplete |
 
 Hooks are **enforced**, not advisory. They run automatically on every matching event.
 

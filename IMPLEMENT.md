@@ -52,7 +52,7 @@ If I write code, also create:
         "hooks": [
           {
             "type": "command",
-            "command": "if echo \"$TOOL_INPUT\" | grep -qE 'git (push|merge|rebase).*main'; then echo 'BLOCKED: Use a feature branch. Never push directly to main.' && exit 1; fi"
+            "command": "INPUT=$(cat); CMD=$(echo \"$INPUT\" | jq -r '.tool_input.command // empty'); if echo \"$CMD\" | grep -qE 'git (push|merge|rebase).*main'; then echo 'BLOCKED: Use a feature branch. Never push directly to main.' >&2 && exit 1; fi"
           }
         ]
       }
@@ -60,6 +60,8 @@ If I write code, also create:
   }
 }
 ```
+
+> **Note:** Hook commands receive input via stdin (JSON with `tool_input`), not via `$TOOL_INPUT` env var. See `.claude/hooks/protect-main.sh` for the full working example.
 
 **Create `.claude/agents/code-reviewer.md`** with frontmatter (name, description, tools) and instructions to review code against the project's CLAUDE.md conventions.
 
