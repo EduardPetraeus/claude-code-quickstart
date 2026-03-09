@@ -16,14 +16,10 @@ if echo "$COMBINED" | grep -qE '(sk-[a-zA-Z0-9]{20,}|AKIA[A-Z0-9]{16}|ghp_[a-zA-
   exit 2
 fi
 
-# Check for Bearer token patterns (but not in curl commands themselves — only in output)
-CMD=$(echo "$INPUT" | jq -r '.tool_input.command // empty')
+# Check for Bearer tokens in output (potential secret leak)
 if echo "$OUTPUT" | grep -qE 'Bearer [a-zA-Z0-9\-_.]{20,}'; then
-  # Only flag if the Bearer token is in the output, not just the command
-  if ! echo "$CMD" | grep -qE 'Bearer'; then
-    echo "BLOCKED: Bash output contains a Bearer token. Review output before continuing." >&2
-    exit 2
-  fi
+  echo "BLOCKED: Bash output contains a Bearer token. Review output before continuing." >&2
+  exit 2
 fi
 
 exit 0

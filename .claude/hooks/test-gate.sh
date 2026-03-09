@@ -2,7 +2,10 @@
 # Stop hook: remind Claude to run tests if code was changed but tests weren't run.
 # Non-blocking — injects a reminder, does not prevent stop.
 
-TOUCHFILE="/tmp/claude-tests-passed"
+# Use persistent cache dir instead of /tmp
+CACHE_DIR="${HOME}/.cache/claude"
+mkdir -p "$CACHE_DIR"
+TOUCHFILE="$CACHE_DIR/tests-passed"
 
 # Check if we're in a git repo with code changes
 if ! git rev-parse --is-inside-work-tree &>/dev/null; then
@@ -15,12 +18,9 @@ if [ -z "$CODE_CHANGES" ]; then
     exit 0
 fi
 
-# Check if tests were run this session (touchfile < 60 min old)
-if [ -f "$TOUCHFILE" ]; then
-    TOUCHFILE_AGE=$(( $(date +%s) - $(cat "$TOUCHFILE") ))
-    if [ "$TOUCHFILE_AGE" -lt 3600 ]; then
-        exit 0
-    fi
+# Check if tests were run this session (touchfile modified < 60 min ago)
+if [ -f "$TOUCHFILE" ] && find "$TOUCHFILE" -mmin -60 &>/dev/null; then
+    exit 0
 fi
 
 # Code changes exist but no recent test run

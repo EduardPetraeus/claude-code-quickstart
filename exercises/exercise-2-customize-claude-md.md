@@ -13,6 +13,9 @@ Read through the file. Notice the `<!-- CUSTOMIZE -->` comments — these are th
 
 ### 2. Edit the Project Context section
 
+> **Note:** If the `protect-critical.sh` hook is active, you'll get a permission prompt when editing CLAUDE.md. This is by design — the hook guards critical files. Approve the edit to continue.
+
+
 Replace the placeholder values with something real (or made up for practice):
 
 ```markdown

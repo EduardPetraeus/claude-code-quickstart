@@ -13,7 +13,7 @@ TODAY=$(date +%s)
 GOV_FILE="$HOME/.claude/.last-governance-check"
 if [ -f "$GOV_FILE" ]; then
   LAST_DATE=$(cat "$GOV_FILE" | tr -d '[:space:]')
-  LAST_TS=$(date -j -f "%Y-%m-%d" "$LAST_DATE" +%s 2>/dev/null || echo 0)
+  LAST_TS=$(date -d "$LAST_DATE" +%s 2>/dev/null || date -j -f "%Y-%m-%d" "$LAST_DATE" +%s 2>/dev/null || echo 0)
   DAYS_AGO=$(( (TODAY - LAST_TS) / 86400 ))
   if [ "$DAYS_AGO" -gt 14 ]; then
     CONTEXT="${CONTEXT}WARNING: Governance check is ${DAYS_AGO} days old. Consider reviewing your setup.\n"
@@ -27,7 +27,11 @@ fi
 
 # Output context for Claude if any warnings
 if [ -n "$CONTEXT" ]; then
-  printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"%s"}}' "$(echo -e "$CONTEXT" | sed 's/"/\\"/g')"
+  if command -v jq &>/dev/null; then
+    jq -n --arg ctx "$(echo -e "$CONTEXT")" '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":$ctx}}'
+  else
+    printf '{"hookSpecificOutput":{"hookEventName":"SessionStart","additionalContext":"%s"}}' "$(echo -e "$CONTEXT" | sed 's/"/\\"/g')"
+  fi
 fi
 
 exit 0

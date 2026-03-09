@@ -59,13 +59,16 @@ def get_api_key(service_name: str, env_var: str | None = None) -> str | None:
 
 def call_gemini(prompt: str, api_key: str, model: str = "gemini-2.5-flash") -> str:
     """Call Gemini API and return response text."""
-    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
+    url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent"
     payload = json.dumps({"contents": [{"parts": [{"text": prompt}]}]}).encode("utf-8")
 
     req = urllib.request.Request(
         url,
         data=payload,
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            "x-goog-api-key": api_key,
+        },
         method="POST",
     )
 
