@@ -85,5 +85,15 @@
 <!-- - API endpoints must follow REST conventions in docs/api-guide.md -->
 <!-- - All new components need Storybook stories -->
 
+## Testing
+
+<!-- CUSTOMIZE: Define how to run tests for your project. Examples: -->
+<!-- - Run tests: `pytest` -->
+<!-- - Run tests: `npm test` or `vitest` -->
+<!-- - Run linter: `ruff check .` -->
+
+<!-- TIP: Create CLAUDE.local.md for personal preferences (language, local paths, editor settings).
+     It's auto-gitignored and never committed to the repo. -->
+
 <!-- You're done! Save this file, commit it to git, and start Claude Code.
      Claude reads CLAUDE.md automatically — no extra configuration needed. -->

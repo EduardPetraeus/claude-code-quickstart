@@ -181,6 +181,11 @@ cython_debug/
 # Learn more at https://abstra.io/docs
 .abstra/
 
+# Claude Code — local/session files (not committed)
+STATUS.md
+CLAUDE.local.md
+.claude/settings.local.json
+
 # Visual Studio Code
 #  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
 #  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore

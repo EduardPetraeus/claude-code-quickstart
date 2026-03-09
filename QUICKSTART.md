@@ -2,8 +2,22 @@
 
 ## Prerequisites
 
-- [Claude Code](https://docs.anthropic.com/en/docs/claude-code) installed (`npm install -g @anthropic-ai/claude-code`)
-- A Claude subscription (Pro, Team, or Enterprise)
+**Install Claude Code** — pick one method:
+
+```bash
+# Recommended (standalone installer)
+curl -fsSL https://claude.ai/install.sh | bash
+
+# macOS (Homebrew)
+brew install --cask claude-code
+
+# Cross-platform (Node.js 18+)
+npm install -g @anthropic-ai/claude-code
+```
+
+**Subscription required:** Claude Pro, Max, Team, or Enterprise — or an [Anthropic Console](https://console.anthropic.com/) account with API credits.
+
+> Full install docs: [docs.anthropic.com/en/docs/claude-code/overview](https://docs.anthropic.com/en/docs/claude-code/overview)
 
 ## Setup
 
@@ -44,15 +58,32 @@ cp -r .claude/ /path/to/your-project/
 cd /path/to/your-project && claude
 ```
 
+## Personal Preferences — CLAUDE.local.md
+
+Create `CLAUDE.local.md` in your project root for settings that shouldn't be committed:
+
+```markdown
+# CLAUDE.local.md — Personal preferences (auto-gitignored)
+
+- Respond in Danish
+- Python: /opt/homebrew/bin/python3.12
+- Prefer parallel subagents for multi-file tasks
+```
+
+Claude reads this automatically alongside `CLAUDE.md`. It's gitignored by default — safe for local paths, language preferences, and personal workflows.
+
 ## What's Included
 
 | File | What It Does |
 |---|---|
 | `CLAUDE.md` | Project memory template with commented sections |
-| `.claude/rules/` | Git workflow, code style, session discipline |
-| `.claude/hooks/` | Block push to main, auto-format Python |
-| `.claude/agents/` | Code reviewer agent |
-| `docs/` | Full documentation and workshop guide |
+| `.claude/rules/` | Git workflow, code style, security, testing, session discipline |
+| `.claude/hooks/` | Branch protection, auto-lint, secret scanning, context monitoring |
+| `.claude/agents/` | Code reviewer, security reviewer, quality gate, 5 test specialists |
+| `prompts/` | Prompt templates and divergent thinking frameworks |
+| `guides/` | Agentic engineering patterns, adversarial review, parallel execution |
+| `tools/` | Gemini-powered external code review CLI |
+| `docs/` | Full documentation, cheat sheet, and workshop guide |
 | `examples/` | CLAUDE.md templates for Python, TypeScript, and non-coders |
 | `exercises/` | 4 hands-on exercises to learn the setup |
 
@@ -67,8 +98,22 @@ Don't code? No problem. You can set up a project without touching any config fil
 5. Paste it into Claude Code and answer the questions
 6. Done — Claude sets up everything for you
 
-## Next
+## Troubleshooting
 
+**Hooks aren't running?**
+Make sure they're executable: `chmod +x .claude/hooks/*.sh`
+
+**Claude doesn't know the conventions?**
+Verify `CLAUDE.md` exists in the project root. Claude reads it automatically on startup.
+
+**Permission denied on tool calls?**
+Check `.claude/settings.json` — hooks may be blocking actions. Run `claude` with `--verbose` to see which hooks fire.
+
+## Next Steps
+
+- Run `/compact` after completing a feature to reclaim context
+- Run `/clear` when switching tasks
+- Use `Shift+Tab` to toggle plan mode (scope work before coding)
 - Read the docs in `docs/` for full explanations
 - Try the exercises in `exercises/` to learn hands-on
 - Check `examples/` for CLAUDE.md templates for your stack
