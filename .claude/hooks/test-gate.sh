@@ -19,7 +19,7 @@ if [ -z "$CODE_CHANGES" ]; then
 fi
 
 # Check if tests were run this session (touchfile modified < 60 min ago)
-if [ -f "$TOUCHFILE" ] && find "$TOUCHFILE" -mmin -60 &>/dev/null; then
+if [ -f "$TOUCHFILE" ] && [ -n "$(find "$TOUCHFILE" -mmin -60 2>/dev/null)" ]; then
     exit 0
 fi
 

@@ -17,7 +17,7 @@ if echo "$COMBINED" | grep -qE '(sk-[a-zA-Z0-9]{20,}|AKIA[A-Z0-9]{16}|ghp_[a-zA-
 fi
 
 # Check for Bearer tokens in output (potential secret leak)
-if echo "$OUTPUT" | grep -qE 'Bearer [a-zA-Z0-9\-_.]{20,}'; then
+if echo "$COMBINED" | grep -qE 'Bearer [a-zA-Z0-9\-_.]{20,}'; then
   echo "BLOCKED: Bash output contains a Bearer token. Review output before continuing." >&2
   exit 2
 fi
