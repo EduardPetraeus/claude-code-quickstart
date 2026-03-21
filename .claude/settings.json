@@ -109,7 +109,7 @@
     ],
     "PostToolUseFailure": [
       {
-        "matcher": ".*",
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
@@ -121,20 +121,22 @@
     ],
     "InstructionsLoaded": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "cat | jq -r \".files[]\" >> /tmp/claude-instructions-loaded.log"
+            "command": "jq -r '.files[]' >> \"${TMPDIR:-/tmp}/claude-instructions-loaded.log\" 2>/dev/null || true"
           }
         ]
       }
     ],
     "ConfigChange": [
       {
+        "matcher": "",
         "hooks": [
           {
             "type": "command",
-            "command": "echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Config changed during session\" >> /tmp/claude-config-changes.log"
+            "command": "echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Config changed during session\" >> \"${TMPDIR:-/tmp}/claude-config-changes.log\""
           }
         ]
       }
