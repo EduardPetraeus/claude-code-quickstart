@@ -3,6 +3,12 @@
     "type": "command",
     "command": "bash .claude/hooks/file-suggestion.sh"
   },
+  "autoUpdatesChannel": "stable",
+  "attribution": {
+    "commit": "\n\nCo-Authored-By: Claude <noreply@anthropic.com>",
+    "pr": "Generated with Claude Code"
+  },
+  "effortLevel": "high",
   "hooks": {
     "PreToolUse": [
       {
@@ -97,6 +103,38 @@
           {
             "type": "command",
             "command": "bash .claude/hooks/session-end.sh"
+          }
+        ]
+      }
+    ],
+    "PostToolUseFailure": [
+      {
+        "matcher": ".*",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "bash .claude/hooks/tool-failure-log.sh",
+            "timeout": 3000
+          }
+        ]
+      }
+    ],
+    "InstructionsLoaded": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cat | jq -r \".files[]\" >> /tmp/claude-instructions-loaded.log"
+          }
+        ]
+      }
+    ],
+    "ConfigChange": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "echo \"[$(date '+%Y-%m-%d %H:%M:%S')] Config changed during session\" >> /tmp/claude-config-changes.log"
           }
         ]
       }
