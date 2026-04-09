@@ -11,12 +11,13 @@ A battle-tested starter kit for [Claude Code](https://docs.anthropic.com/en/docs
 - **Claude Code** installed — pick one method:
   - `curl -fsSL https://claude.ai/install.sh | bash` (recommended)
   - `brew install --cask claude-code` (macOS)
-  - `npm install -g @anthropic-ai/claude-code` (cross-platform)
 - **Active subscription** — Claude Pro, Max, Team, or Enterprise — or an [Anthropic Console](https://console.anthropic.com/) account with API credits
 - **Git** installed
 - **A terminal** — macOS, Linux, or Windows (WSL recommended)
 
-> Full install docs: [docs.anthropic.com/en/docs/claude-code/overview](https://docs.anthropic.com/en/docs/claude-code/overview)
+> ⚠️ NPM installation is deprecated. Use the native installer or Homebrew.
+
+> Full install docs: [code.claude.com](https://code.claude.com)
 
 ## Quick Start
 

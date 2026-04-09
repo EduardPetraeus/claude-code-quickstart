@@ -4,20 +4,19 @@
 
 **Install Claude Code** — pick one method:
 
+> ⚠️ NPM installation is deprecated. Use the native installer or Homebrew.
+
 ```bash
 # Recommended (standalone installer)
 curl -fsSL https://claude.ai/install.sh | bash
 
 # macOS (Homebrew)
 brew install --cask claude-code
-
-# Cross-platform (Node.js 18+)
-npm install -g @anthropic-ai/claude-code
 ```
 
 **Subscription required:** Claude Pro, Max, Team, or Enterprise — or an [Anthropic Console](https://console.anthropic.com/) account with API credits.
 
-> Full install docs: [docs.anthropic.com/en/docs/claude-code/overview](https://docs.anthropic.com/en/docs/claude-code/overview)
+> Full install docs: [code.claude.com](https://code.claude.com)
 
 ## Setup
 
